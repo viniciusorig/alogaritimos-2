@@ -18,7 +18,7 @@ void maximoMinimo(int *v, int *N, int *maximo, int *minimo){
 
 int main(){
     srand(time(NULL));
-    int casas= 2, vector[casas], menor, maior;
+    int casas = 0, vector[casas], menor, maior;
     int *N = &casas, *v = &vector[*N], *minimo = &menor, *maximo = &maior;
 
     cout << "digite quantas casas para o array: ";
