@@ -3,7 +3,7 @@ using namespace std;
 
 void calculo(int *proximas) {
     for (int i = 0; i < 11; i++){
-        proximas[i] = 1986+((i*76)+(i*19));
+        proximas[i] = 1986+((i*76)-(i*19));
     }
 }
 

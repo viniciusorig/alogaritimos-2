@@ -7,24 +7,24 @@ using namespace std;
 FILE *matriz = fopen("matrix.txt", "w");
 const float euler = 2.72, *e = &euler; // defini um valor contande de e para 2.72;
 const float pi = 3.14, *p = &pi;       // defini um valor constante de pi de 3.14;
-void preenchimento(float matrix[5][6])
+void preenchimento(float x[5][6], float result_final[5][6])
 {
-    float x = -3.0, variacaox = 0.2;
+    float valor = -3.0, variacaox = 0.2;
 
     for (int i = 0; i < 5; i++)
     {
         for (int j = 0; j < 6; j++)
         {
-            matrix[i][j] = x;
-            x = x + variacaox;
+            x[i][j] = valor;
+            valor = valor + variacaox;
         }
     }
     for (int h = 0; h < 5; h++)
     {
         for (int k = 0; k < 6; k++)
         {
-           cout << matrix[h][k] << "\t";
-           fprintf(matriz, "%.1f \t",matrix[h][k]);
+           cout << x[h][k] << "\t";
+           fprintf(matriz, "%.1f \t",x[h][k]);
         } 
         fprintf(matriz, "\n");
         cout << "\n";
@@ -55,12 +55,15 @@ void equation(float x[5][6], float result_final[5][6])
     fprintf(matriz, "\n");
     cout << "\n";
 }
-
+void (*ptr1[])(float x[5][6], float result_final[5][6]) = {preenchimento, equation};
 int main()
 {
     float matrix[5][6], matrizeira[5][6];
-    preenchimento(matrix);
-    equation(matrix, matrizeira);
+    int opcao;
+    cout << "oque deseja fazer?" <<endl;
+    cout << "1-prenchimento da matrix com variação 0,2\t|\t 2- resultado da equação com plotação de aquivo" << endl;
+    cin >> opcao;
+    (*ptr1[opcao-1])(matrix, matrizeira);
     fwrite(&matrix, sizeof(float), sizeof(matrix[5][6]), matriz);
     fclose(matriz);
 }
